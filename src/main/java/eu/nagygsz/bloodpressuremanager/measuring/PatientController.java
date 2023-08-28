@@ -19,12 +19,12 @@ public class PatientController {
     }
 
     @GetMapping("/{patientId}")
-    public Optional<Patient> getPatient(UUID patientId) {
+    public Optional<Patient> getPatient(@PathVariable("patientId") UUID patientId) {
         return patientDAO.findById(patientId);
     }
 
     @PostMapping
-    public UUID addPatient(@RequestBody Patient newPatient){
+    public UUID addPatient(@RequestBody Patient newPatient) {
         Patient result = patientDAO.save(newPatient);
         return result.getId();
     }
