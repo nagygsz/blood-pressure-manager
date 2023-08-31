@@ -1,5 +1,7 @@
 package eu.nagygsz.bloodpressuremanager.measuring;
 
+import eu.nagygsz.bloodpressuremanager.patient.Patient;
+import eu.nagygsz.bloodpressuremanager.patient.PatientDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,9 @@ public class MeasurementController {
     @Autowired
     MeasurementDAO measurementDAO;
 
+    @Autowired
+    PatientDAO patientDAO;
+
     @GetMapping
     public Iterable<Measurement> getMeasurements() {
         return measurementDAO.findAll();
@@ -25,9 +30,13 @@ public class MeasurementController {
 
     @PostMapping
     public UUID addMeasurement(@RequestBody Measurement measurement) {
+        Patient patient = measurement.getPatient();
+        if(!patientDAO.existsById(patient.getId())){
+            Optional<Patient> resultP = patientDAO.findOneByUserName(patient.getUserName());
+            resultP.ifPresent(measurement::setPatient);
+        }
         Measurement result = measurementDAO.save(measurement);
         return result.getId();
     }
-
 }
 

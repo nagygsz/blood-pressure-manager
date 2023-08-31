@@ -1,4 +1,4 @@
-package eu.nagygsz.bloodpressuremanager.measuring;
+package eu.nagygsz.bloodpressuremanager.patient;
 
 import eu.nagygsz.bloodpressuremanager.postgresql.EntityWithUUID;
 import jakarta.persistence.Entity;

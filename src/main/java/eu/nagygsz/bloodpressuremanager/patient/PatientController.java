@@ -1,4 +1,4 @@
-package eu.nagygsz.bloodpressuremanager.measuring;
+package eu.nagygsz.bloodpressuremanager.patient;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
