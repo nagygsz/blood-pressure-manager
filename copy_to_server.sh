@@ -13,7 +13,7 @@ SOURCE_JAR="target/blood-pressure-manager.jar"
 SOURCE_DOCKERFILE="Dockerfile"
 
 # Destination directory on the remote server
-DEST_DIRECTORY="~/services/blood-pressure-manager"
+DEST_DIRECTORY="services/blood-pressure-manager"
 
 # Copy files using scp
 scp "$SOURCE_JAR" "$SOURCE_DOCKERFILE" "$REMOTE_USERNAME@$REMOTE_IP:$DEST_DIRECTORY"
