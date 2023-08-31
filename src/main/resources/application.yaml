@@ -1,6 +1,8 @@
 spring:
   datasource:
     url: jdbc:postgresql://192.168.0.173:5432/blood-pressure-demo
+    properties:
+      serverTimezone: Europe/Budapest
     username: root
     password: root
   jpa:
@@ -13,5 +15,5 @@ springdoc:
   api-docs:
     path: /api-docs
   swagger-ui:
-    path: /swagger-ui.html
+    path: /
     enabled: true

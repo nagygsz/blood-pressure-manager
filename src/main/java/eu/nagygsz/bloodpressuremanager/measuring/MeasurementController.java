@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/measures")
@@ -21,7 +21,12 @@ public class MeasurementController {
 
     @GetMapping
     public Iterable<Measurement> getMeasurements() {
-        return measurementDAO.findAll();
+
+        List<Measurement> sortedList = new ArrayList<>();
+        measurementDAO.findAll().forEach(sortedList::add);
+        return sortedList.stream()
+                .sorted(Comparator.comparing(Measurement::getRecordedAt).reversed())
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{measurementId}")
